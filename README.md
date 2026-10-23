@@ -82,7 +82,12 @@ src/pricing.test.ts     Юнит-тесты
 server/app.ts           Express API и проверка входа
 server/index.ts         Запуск сервера
 server/app.test.ts      API-тесты
-client/src/App.tsx      React-таблица
+client/src/App.tsx      Страница: каталог + «Свой пример»
+client/src/ProductCard.tsx  Карточка товара: конкуренты, правила, объяснение
+client/src/Sandbox.tsx  Форма «Свой пример» со своими цифрами
+client/src/explain.ts   Текст «Как посчитали» по ответу API
+client/src/api.ts       Запрос POST /reprice
+client/src/format.ts    Формат денег и названия причин
 client/src/style.css    Оформление
 client/vite.config.ts   Vite и proxy для API
 data/products.json      Тестовые товары
