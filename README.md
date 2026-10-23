@@ -57,9 +57,25 @@ curl -X POST http://localhost:3001/reprice \
 
 Функция находится строго в `src/pricing.ts` и экспортируется как `calculatePrice`.
 
+## Деплой на Vercel
+
+Проект готов к деплою без дополнительных настроек — всё описано в `vercel.json`.
+
+1. Загрузите репозиторий на GitHub.
+2. В Vercel: **Add New → Project → Import** этого репозитория.
+3. Ничего не меняйте (Framework: Vite, Build: `npm run build`, Output: `dist` подтянутся из `vercel.json`) и нажмите **Deploy**.
+
+Как это устроено:
+
+- Интерфейс собирается Vite в папку `dist` и раздаётся как статический сайт.
+- `api/reprice.ts` — serverless-функция Vercel, которая использует то же Express-приложение из `server/app.ts`.
+- Rewrite в `vercel.json` перенаправляет `/reprice` на `/api/reprice`, поэтому интерфейс работает одинаково локально и на Vercel.
+
 ## Структура
 
 ```text
+api/reprice.ts          Serverless-функция для Vercel
+vercel.json             Настройки деплоя на Vercel
 src/pricing.ts          Алгоритм (проверяется автотестами)
 src/types.ts            Типы данных
 src/pricing.test.ts     Юнит-тесты

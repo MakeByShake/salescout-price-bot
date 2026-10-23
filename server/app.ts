@@ -1,6 +1,6 @@
 import express from "express";
 import type { Product } from "../src/types";
-import { calculatePrice } from "../src/pricing";
+import { calculatePrice } from "../src/pricing.js";
 
 export const app = express();
 app.use(express.json());
@@ -23,7 +23,8 @@ function isProduct(value: unknown): value is Product {
   );
 }
 
-app.post("/reprice", (req, res) => {
+// "/api/reprice" is the Vercel function path; "/reprice" is used locally.
+app.post(["/reprice", "/api/reprice"], (req, res) => {
   if (!Array.isArray(req.body) || !req.body.every(isProduct)) {
     res.status(400).json({ error: "Expected an array of valid products" });
     return;

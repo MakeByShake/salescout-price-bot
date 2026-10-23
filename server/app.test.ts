@@ -10,6 +10,11 @@ describe("POST /reprice", () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual(expected);
   });
+  it("also answers on the Vercel path /api/reprice", async () => {
+    const response = await request(app).post("/api/reprice").send(products);
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(expected);
+  });
   it("accepts an empty array", async () => {
     const response = await request(app).post("/reprice").send([]);
     expect(response.status).toBe(200);
